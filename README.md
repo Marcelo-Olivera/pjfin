@@ -1,4 +1,4 @@
-<h1 align="center">💰 PJFin</h1>
+<h1 align="center">PJFin</h1>
 <p align="center">
   <b>SaaS Financeiro B2B para gestão de finanças de pequenas empresas e profissionais autônomos.</b>
 </p>
@@ -11,11 +11,13 @@
 
 ---
 
-## 📌 Sobre o Projeto
+## EM CONSTRUÇÃO
+
+## Sobre o Projeto
 
 O **PJFin** é uma plataforma SaaS financeira B2B desenvolvida para ajudar pequenas empresas e profissionais autônomos a controlarem suas finanças com eficiência. O sistema oferece controle de entradas e saídas, fluxo de caixa, contas a pagar/receber e dashboards com indicadores financeiros em tempo real.
 
-## 🚀 Stack Tecnológica
+## Stack Tecnológica
 
 | Camada | Tecnologia |
 |---|---|
@@ -36,7 +38,7 @@ pjfin/
 └── docker/        # Configuração de infraestrutura
 ```
 
-## ⚡ Como Rodar Localmente
+## Como Rodar Localmente
 
 ### Pré-requisitos
 - Node.js 18+
@@ -73,13 +75,13 @@ npm run dev
 
 O app estará disponível em `http://localhost:5173`
 
-## 📚 Documentação
+## Documentação
 
 - [Escopo do Projeto](docs/SCOPE.md)
 - [Arquitetura](docs/ARCHITECTURE.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Documentação da API](docs/API.md)
 
-## 📄 Licença
+## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
