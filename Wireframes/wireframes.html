@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PJFin — Wireframes</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #F4F4F4;
+    --card: #FFFFFF;
+    --block: #E0E0E0;
+    --block-dark: #C8C8C8;
+    --text-primary: #212121;
+    --text-secondary: #9E9E9E;
+    --text-light: #BDBDBD;
+    --border: #E0E0E0;
+    --sidebar-bg: #212121;
+    --sidebar-text: #FFFFFF;
+    --sidebar-muted: #9E9E9E;
+    --accent: #424242;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #2C2C2C;
+    color: var(--text-primary);
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #1A1A1A;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 24px;
+    height: 52px;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+    overflow-x: auto;
+  }
+  .nav-brand {
+    color: #FFF;
+    font-weight: 700;
+    font-size: 15px;
+    margin-right: 32px;
+    white-space: nowrap;
+    letter-spacing: -0.3px;
+  }
+  .nav-brand span { color: #9E9E9E; font-weight: 400; font-size: 12px; margin-left: 6px; }
+  .nav-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-right: 20px;
+  }
+  .nav-label {
+    color: #666;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 6px;
+    white-space: nowrap;
+  }
+  .nav-btn {
+    background: none;
+    border: none;
+    color: #9E9E9E;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover { background: #333; color: #FFF; }
+  .nav-btn.active { background: #F4F4F4; color: #212121; font-weight: 600; }
+
+  /* ── SCREENS ── */
+  .screen {
+    display: none;
+    min-height: 100vh;
+    padding-top: 52px;
+  }
+  .screen.active { display: flex; flex-direction: column; }
+
+  /* ── AUTH SCREENS ── */
+  .auth-screen {
+    background: var(--bg);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .auth-card {
+    background: var(--card);
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 40px;
+    width: 480px;
+  }
+  .auth-logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+  .auth-subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .form-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 12px;
+    flex: 1;
+  }
+  .form-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .form-input {
+    background: var(--block);
+    border: none;
+    border-radius: 4px;
+    height: 44px;
+    padding: 0 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    width: 100%;
+  }
+  .btn-primary {
+    width: 100%;
+    height: 48px;
+    background: var(--text-primary);
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .auth-footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 16px;
+  }
+  .auth-footer a {
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .auth-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+  }
+
+  /* ── APP LAYOUT ── */
+  .app-layout {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    background: var(--bg);
+  }
+  .sidebar {
+    width: 220px;
+    min-width: 220px;
+    background: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    position: sticky;
+    top: 52px;
+    height: calc(100vh - 52px);
+    overflow-y: auto;
+  }
+  .sidebar-logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFF;
+    padding: 0 20px 24px;
+    letter-spacing: -0.5px;
+    border-bottom: 1px solid #333;
+  }
+  .sidebar-section {
+    padding: 16px 20px 4px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #555;
+    font-weight: 600;
+  }
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 13px;
+    color: var(--sidebar-muted);
+    cursor: pointer;
+    border-radius: 0;
+    transition: all 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .sidebar-item:hover { background: #2A2A2A; color: #FFF; }
+  .sidebar-item.active { background: #2A2A2A; color: #FFF; border-left-color: #FFF; }
+  .sidebar-icon {
+    width: 16px;
+    height: 16px;
+    background: currentColor;
+    border-radius: 2px;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+  .sidebar-item.active .sidebar-icon { opacity: 1; }
+  .sidebar-bottom {
+    margin-top: auto;
+    padding: 16px 20px;
+    border-top: 1px solid #333;
+  }
+  .sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sidebar-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #444;
+    flex-shrink: 0;
+  }
+  .sidebar-user-info { flex: 1; }
+  .sidebar-user-name { font-size: 12px; color: #FFF; font-weight: 600; }
+  .sidebar-user-company { font-size: 11px; color: #666; }
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .topbar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 28px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 52px;
+    z-index: 10;
+  }
+  .topbar-title { font-size: 18px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .topbar-btn {
+    background: var(--text-primary);
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .topbar-btn.secondary {
+    background: var(--block);
+    color: var(--text-primary);
+  }
+  .topbar-search {
+    background: var(--block);
+    border: none;
+    border-radius: 4px;
+    height: 36px;
+    padding: 0 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    width: 200px;
+  }
+
+  .page-body {
+    padding: 28px;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* ── COMPONENTS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .kpi-label { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 8px; }
+  .kpi-value { font-size: 24px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; }
+  .kpi-sub { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+
+  .chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .chart-card {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .chart-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 16px; }
+  .chart-placeholder {
+    background: var(--block);
+    border-radius: 4px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+  }
+
+  .table-card {
+    background: var(--card);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .table-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .table-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    padding: 10px 20px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-secondary);
+    background: #FAFAFA;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td {
+    padding: 13px 20px;
+    font-size: 13px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #FAFAFA; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-income { background: #E8E8E8; color: #424242; }
+  .badge-expense { background: #EFEFEF; color: #757575; }
+  .badge-paid { background: #E0E0E0; color: #424242; }
+  .badge-pending { background: #F5F5F5; color: #9E9E9E; border: 1px solid #E0E0E0; }
+  .badge-overdue { background: #EEEEEE; color: #616161; }
+
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .filter-select {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    height: 36px;
+    padding: 0 12px;
+    font-size: 12px;
+    color: var(--text-primary);
+  }
+
+  .cashflow-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .cashflow-item {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+  .cashflow-label { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 600; }
+  .cashflow-value { font-size: 22px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; }
+
+  .empty-state {
+    padding: 48px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  .form-card {
+    background: var(--card);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 24px;
+    max-width: 640px;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .btn-save {
+    background: var(--text-primary);
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn-cancel {
+    background: var(--block);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .profile-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  /* ── WIREFRAME LABEL ── */
+  .wf-label {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background: #1A1A1A;
+    color: #666;
+    font-size: 10px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    z-index: 999;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">PJFin <span>Wireframes</span></div>
+  <div class="nav-group">
+    <span class="nav-label">Auth</span>
+    <button class="nav-btn active" onclick="show('cadastro')">Cadastro</button>
+    <button class="nav-btn" onclick="show('login')">Login</button>
+    <button class="nav-btn" onclick="show('recuperar')">Recuperar Senha</button>
+  </div>
+  <div class="nav-group">
+    <span class="nav-label">App</span>
+    <button class="nav-btn" onclick="show('dashboard')">Dashboard</button>
+    <button class="nav-btn" onclick="show('transacoes')">Transações</button>
+    <button class="nav-btn" onclick="show('contas')">Contas</button>
+    <button class="nav-btn" onclick="show('cashflow')">Fluxo de Caixa</button>
+    <button class="nav-btn" onclick="show('categorias')">Categorias</button>
+    <button class="nav-btn" onclick="show('empresa')">Empresa</button>
+    <button class="nav-btn" onclick="show('perfil')">Perfil</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     AUTH — CADASTRO
+═══════════════════════════════════════════════════════════════ -->
+<div id="cadastro" class="screen active auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">PJFin</div>
+    <div class="auth-subtitle">Crie sua conta gratuitamente</div>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-label">Nome</div>
+        <div class="form-input"></div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">Sobrenome</div>
+        <div class="form-input"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Nome da Empresa</div>
+      <div class="form-input"></div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">CNPJ</div>
+      <div class="form-input"></div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">E-mail</div>
+      <div class="form-input"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-label">Senha</div>
+        <div class="form-input"></div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">Confirmar Senha</div>
+        <div class="form-input"></div>
+      </div>
+    </div>
+    <button class="btn-primary">Criar conta</button>
+    <div class="auth-footer" style="margin-top:16px">Já tenho conta — <a href="#" onclick="show('login')">Entrar</a></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     AUTH — LOGIN
+═══════════════════════════════════════════════════════════════ -->
+<div id="login" class="screen auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">PJFin</div>
+    <div class="auth-subtitle">Entre na sua conta</div>
+    <div class="form-group">
+      <div class="form-label">E-mail</div>
+      <div class="form-input"></div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Senha</div>
+      <div class="form-input"></div>
+    </div>
+    <div style="text-align:right; margin-bottom:16px">
+      <a href="#" onclick="show('recuperar')" style="font-size:12px; color:var(--text-secondary); text-decoration:none">Esqueci minha senha</a>
+    </div>
+    <button class="btn-primary">Entrar</button>
+    <div class="auth-footer" style="margin-top:16px">Não tenho conta — <a href="#" onclick="show('cadastro')">Criar conta</a></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     AUTH — RECUPERAR SENHA
+═══════════════════════════════════════════════════════════════ -->
+<div id="recuperar" class="screen auth-screen">
+  <div class="auth-card" style="width:420px">
+    <div class="auth-logo">PJFin</div>
+    <div class="auth-subtitle">Recuperar senha</div>
+    <p style="font-size:13px; color:var(--text-secondary); margin-bottom:24px; text-align:center; line-height:1.6">
+      Informe seu e-mail e enviaremos um link para redefinir sua senha.
+    </p>
+    <div class="form-group">
+      <div class="form-label">E-mail</div>
+      <div class="form-input"></div>
+    </div>
+    <button class="btn-primary">Enviar link de recuperação</button>
+    <div class="auth-footer" style="margin-top:16px"><a href="#" onclick="show('login')">Voltar para o login</a></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     APP — DASHBOARD
+═══════════════════════════════════════════════════════════════ -->
+<div id="dashboard" class="screen">
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">PJFin</div>
+      <div class="sidebar-section">Principal</div>
+      <div class="sidebar-item active"><div class="sidebar-icon"></div> Dashboard</div>
+      <div class="sidebar-section">Financeiro</div>
+      <div class="sidebar-item" onclick="show('transacoes')"><div class="sidebar-icon"></div> Transações</div>
+      <div class="sidebar-item" onclick="show('contas')"><div class="sidebar-icon"></div> Contas</div>
+      <div class="sidebar-item" onclick="show('cashflow')"><div class="sidebar-icon"></div> Fluxo de Caixa</div>
+      <div class="sidebar-section">Configurações</div>
+      <div class="sidebar-item" onclick="show('categorias')"><div class="sidebar-icon"></div> Categorias</div>
+      <div class="sidebar-item" onclick="show('empresa')"><div class="sidebar-icon"></div> Empresa</div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar"></div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">João Silva</div>
+            <div class="sidebar-user-company">Empresa XYZ</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Dashboard</div>
+        <div class="topbar-right">
+          <select class="filter-select">
+            <option>Fevereiro 2026</option>
+          </select>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Receita do mês</div>
+            <div class="kpi-value">R$ 0,00</div>
+            <div class="kpi-sub">Total de entradas</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Despesas do mês</div>
+            <div class="kpi-value">R$ 0,00</div>
+            <div class="kpi-sub">Total de saídas</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Lucro</div>
+            <div class="kpi-value">R$ 0,00</div>
+            <div class="kpi-sub">Receita − Despesas</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Saldo em caixa</div>
+            <div class="kpi-value">R$ 0,00</div>
+            <div class="kpi-sub">Saldo atual</div>
+          </div>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <div class="chart-title">Entradas x Saídas</div>
+            <div class="chart-placeholder">Gráfico de barras — Entradas x Saídas</div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Evolução Mensal</div>
+            <div class="chart-placeholder">Gráfico de linha — Evolução do saldo</div>
+          </div>
+        </div>
+        <div class="table-card">
+          <div class="table-header">
+            <div class="table-title">Últimas Transações</div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Data</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Serviço prestado</td><td>Serviços</td><td>20/02/2026</td><td><span class="badge badge-income">Entrada</span></td><td>R$ 3.500,00</td><td><span class="badge badge-paid">Pago</span></td></tr>
+              <tr><td>Aluguel escritório</td><td>Aluguel</td><td>15/02/2026</td><td><span class="badge badge-expense">Saída</span></td><td>R$ 1.200,00</td><td><span class="badge badge-paid">Pago</span></td></tr>
+              <tr><td>Plano internet</td><td>Internet</td><td>10/02/2026</td><td><span class="badge badge-expense">Saída</span></td><td>R$ 150,00</td><td><span class="badge badge-pending">Pendente</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     APP — TRANSAÇÕES
+═══════════════════════════════════════════════════════════════ -->
+<div id="transacoes" class="screen">
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">PJFin</div>
+      <div class="sidebar-section">Principal</div>
+      <div class="sidebar-item" onclick="show('dashboard')"><div class="sidebar-icon"></div> Dashboard</div>
+      <div class="sidebar-section">Financeiro</div>
+      <div class="sidebar-item active"><div class="sidebar-icon"></div> Transações</div>
+      <div class="sidebar-item" onclick="show('contas')"><div class="sidebar-icon"></div> Contas</div>
+      <div class="sidebar-item" onclick="show('cashflow')"><div class="sidebar-icon"></div> Fluxo de Caixa</div>
+      <div class="sidebar-section">Configurações</div>
+      <div class="sidebar-item" onclick="show('categorias')"><div class="sidebar-icon"></div> Categorias</div>
+      <div class="sidebar-item" onclick="show('empresa')"><div class="sidebar-icon"></div> Empresa</div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar"></div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">João Silva</div>
+            <div class="sidebar-user-company">Empresa XYZ</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Transações</div>
+        <div class="topbar-right">
+          <button class="topbar-btn">+ Nova Transação</button>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="filter-bar">
+          <select class="filter-select"><option>Todos os tipos</option><option>Entrada</option><option>Saída</option></select>
+          <select class="filter-select"><option>Todos os status</option><option>Pago</option><option>Pendente</option><option>Vencido</option></select>
+          <select class="filter-select"><option>Todas as categorias</option></select>
+          <input class="filter-select" type="text" placeholder="Data início" style="width:130px">
+          <input class="filter-select" type="text" placeholder="Data fim" style="width:130px">
+        </div>
+        <div class="table-card">
+          <div class="table-header">
+            <div class="table-title">Todas as Transações</div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Contato</th>
+                <th>Forma Pgto.</th>
+                <th>Data</th>
+                <th>Vencimento</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Serviço prestado</td><td>Serviços</td><td>Cliente ABC</td><td>Pix</td><td>20/02/2026</td><td>—</td>
+                <td><span class="badge badge-income">Entrada</span></td><td>R$ 3.500,00</td><td><span class="badge badge-paid">Pago</span></td>
+                <td><span style="color:var(--text-secondary); cursor:pointer; font-size:12px">Editar</span></td>
+              </tr>
+              <tr>
+                <td>Aluguel escritório</td><td>Aluguel</td><td>—</td><td>Transferência</td><td>15/02/2026</td><td>15/02/2026</td>
+                <td><span class="badge badge-expense">Saída</span></td><td>R$ 1.200,00</td><td><span class="badge badge-paid">Pago</span></td>
+                <td><span style="color:var(--text-secondary); cursor:pointer; font-size:12px">Editar</span></td>
+              </tr>
+              <tr>
+                <td>Plano internet</td><td>Internet</td><td>—</td><td>Boleto</td><td>10/02/2026</td><td>28/02/2026</td>
+                <td><span class="badge badge-expense">Saída</span></td><td>R$ 150,00</td><td><span class="badge badge-pending">Pendente</span></td>
+                <td><span style="color:var(--text-secondary); cursor:pointer; font-size:12px">Editar</span></td>
+              </tr>
+              <tr>
+                <td>Energia elétrica</td><td>Energia</td><td>—</td><td>Débito</td><td>05/02/2026</td><td>01/02/2026</td>
+                <td><span class="badge badge-expense">Saída</span></td><td>R$ 280,00</td><td><span class="badge badge-overdue">Vencido</span></td>
+                <td><span style="color:var(--text-secondary); cursor:pointer; font-size:12px">Editar</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     APP — CONTAS A PAGAR / RECEBER
+═══════════════════════════════════════════════════════════════ -->
+<div id="contas" class="screen">
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">PJFin</div>
+      <div class="sidebar-section">Principal</div>
+      <div class="sidebar-item" onclick="show('dashboard')"><div class="sidebar-icon"></div> Dashboard</div>
+      <div class="sidebar-section">Financeiro</div>
+      <div class="sidebar-item" onclick="show('transacoes')"><div class="sidebar-icon"></div> Transações</div>
+      <div class="sidebar-item active"><div class="sidebar-icon"></div> Contas</div>
+      <div class="sidebar-item" onclick="show('cashflow')"><div class="sidebar-icon"></div> Fluxo de Caixa</div>
+      <div class="sidebar-section">Configurações</div>
+      <div class="sidebar-item" onclick="show('categorias')"><div class="sidebar-icon"></div> Categorias</div>
+      <div class="sidebar-item" onclick="show('empresa')"><div class="sidebar-icon"></div> Empresa</div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar"></div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">João Silva</div>
+            <div class="sidebar-user-company">Empresa XYZ</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Contas a Pagar / Receber</div>
+        <div class="topbar-right">
+          <button class="topbar-btn">+ Nova Conta</button>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="kpi-grid" style="grid-template-columns: repeat(3,1fr)">
+          <div class="kpi-card">
+            <div class="kpi-label">A Receber</div>
+            <div class="kpi-value">R$ 5.200,00</div>
+            <div class="kpi-sub">3 contas pendentes</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">A Pagar</div>
+            <div class="kpi-value">R$ 1.630,00</div>
+            <div class="kpi-sub">2 contas pendentes</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Vencidas</div>
+            <div class="kpi-value">R$ 280,00</div>
+            <div class="kpi-sub">1 conta vencida</div>
+          </div>
+        </div>
+        <div class="filter-bar">
+          <select class="filter-select"><option>Todas</option><option>A Pagar</option><option>A Receber</option></select>
+          <select class="filter-select"><option>Todos os status</option><option>Pendente</option><option>Pago</option><option>Vencido</option></select>
+        </div>
+        <div class="table-card">
+          <div class="table-header"><div class="table-title">Contas</div></div>
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Tipo</th>
+                <th>Contato</th>
+                <th>Vencimento</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Serviço prestado — Cliente ABC</td>
+                <td><span class="badge badge-income">Receber</span></td>
+                <td>Cliente ABC</td><td>28/02/2026</td><td>R$ 3.500,00</td>
+                <td><span class="badge badge-pending">Pendente</span></td>
+                <td><button style="font-size:11px; background:var(--text-primary); color:#FFF; border:none; border-radius:3px; padding:4px 10px; cursor:pointer">Marcar pago</button></td>
+              </tr>
+              <tr>
+                <td>Plano internet</td>
+                <td><span class="badge badge-expense">Pagar</span></td>
+                <td>—</td><td>28/02/2026</td><td>R$ 150,00</td>
+                <td><span class="badge badge-pending">Pendente</span></td>
+                <td><button style="font-size:11px; background:var(--text-primary); color:#FFF; border:none; border-radius:3px; padding:4px 10px; cursor:pointer">Marcar pago</button></td>
+              </tr>
+              <tr>
+                <td>Energia elétrica</td>
+                <td><span class="badge badge-expense">Pagar</span></td>
+                <td>—</td><td>01/02/2026</td><td>R$ 280,00</td>
+                <td><span class="badge badge-overdue">Vencido</span></td>
+                <td><button style="font-size:11px; background:var(--text-primary); color:#FFF; border:none; border-radius:3px; padding:4px 10px; cursor:pointer">Marcar pago</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     APP — FLUXO DE CAIXA
+═══════════════════════════════════════════════════════════════ -->
+<div id="cashflow" class="screen">
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">PJFin</div>
+      <div class="sidebar-section">Principal</div>
+      <div class="sidebar-item" onclick="show('dashboard')"><div class="sidebar-icon"></div> Dashboard</div>
+      <div class="sidebar-section">Financeiro</div>
+      <div class="sidebar-item" onclick="show('transacoes')"><div class="sidebar-icon"></div> Transações</div>
+      <div class="sidebar-item" onclick="show('contas')"><div class="sidebar-icon"></div> Contas</div>
+      <div class="sidebar-item active"><div class="sidebar-icon"></div> Fluxo de Caixa</div>
+      <div class="sidebar-section">Configurações</div>
+      <div class="sidebar-item" onclick="show('categorias')"><div class="sidebar-icon"></div> Categorias</div>
+      <div class="sidebar-item" onclick="show('empresa')"><div class="sidebar-icon"></div> Empresa</div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar"></div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">João Silva</div>
+            <div class="sidebar-user-company">Empresa XYZ</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Fluxo de Caixa</div>
+        <div class="topbar-right">
+          <select class="filter-select"><option>Fevereiro 2026</option></select>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="cashflow-summary">
+          <div class="cashflow-item">
+            <div class="cashflow-label">Saldo Inicial</div>
+            <div class="cashflow-value">R$ 0,00</div>
+          </div>
+          <div class="cashflow-item">
+            <div class="cashflow-label">Total Entradas</div>
+            <div class="cashflow-value">R$ 3.500,00</div>
+          </div>
+          <div class="cashflow-item">
+            <div class="cashflow-label">Total Saídas</div>
+            <div class="cashflow-value">R$ 1.200,00</div>
+          </div>
+          <div class="cashflow-item">
+            <div class="cashflow-label">Saldo Final</div>
+            <div class="cashflow-value">R$ 2.300,00</div>
+          </div>
+        </div>
+        <div class="chart-card" style="margin-bottom:24px">
+          <div class="chart-title">Evolução do Fluxo de Caixa</div>
+          <div class="chart-placeholder" style="height:200px">Gráfico de linha — Saldo ao longo do mês</div>
+        </div>
+        <div class="table-card">
+          <div class="table-header"><div class="table-title">Movimentações do Mês</div></div>
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Saldo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>01/02/2026</td><td>Saldo inicial</td><td>—</td><td>—</td><td>—</td><td>R$ 0,00</td></tr>
+              <tr><td>15/02/2026</td><td>Aluguel escritório</td><td>Aluguel</td><td><span class="badge badge-expense">Saída</span></td><td>− R$ 1.200,00</td><td>− R$ 1.200,00</td></tr>
+              <tr><td>20/02/2026</td><td>Serviço prestado</td><td>Serviços</td><td><span class="badge badge-income">Entrada</span></td><td>+ R$ 3.500,00</td><td>R$ 2.300,00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     APP — CATEGORIAS
+═══════════════════════════════════════════════════════════════ -->
+<div id="categorias" class="screen">
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">PJFin</div>
+      <div class="sidebar-section">Principal</div>
+      <div class="sidebar-item" onclick="show('dashboard')"><div class="sidebar-icon"></div> Dashboard</div>
+      <div class="sidebar-section">Financeiro</div>
+      <div class="sidebar-item" onclick="show('transacoes')"><div class="sidebar-icon"></div> Transações</div>
+      <div class="sidebar-item" onclick="show('contas')"><div class="sidebar-icon"></div> Contas</div>
+      <div class="sidebar-item" onclick="show('cashflow')"><div class="sidebar-icon"></div> Fluxo de Caixa</div>
+      <div class="sidebar-section">Configurações</div>
+      <div class="sidebar-item active"><div class="sidebar-icon"></div> Categorias</div>
+      <div class="sidebar-item" onclick="show('empresa')"><div class="sidebar-icon"></div> Empresa</div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar"></div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">João Silva</div>
+            <div class="sidebar-user-company">Empresa XYZ</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Categorias</div>
+        <div class="topbar-right">
+          <button class="topbar-btn">+ Nova Categoria</button>
+        </div>
+      </div>
+      <div class="page-body">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px">
+          <div>
+            <div class="section-title">Receitas</div>
+            <div class="table-card">
+              <table>
+                <thead><tr><th>Nome</th><th>Tipo</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td>Serviços</td><td><span class="badge badge-income">Receita</span></td><td><span style="font-size:12px; color:var(--text-secondary); cursor:pointer">Editar</span></td></tr>
+                  <tr><td>Produtos</td><td><span class="badge badge-income">Receita</span></td><td><span style="font-size:12px; color:var(--text-secondary); cursor:pointer">Editar</span></td></tr>
+                  <tr><td>Consultoria</td><td><span class="badge badge-income">Receita</span></td><td><span style="font-size:12px; color:var(--text-secondary); cursor:pointer">Editar</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="section-title">Despesas</div>
+            <div class="table-card">
+              <table>
+                <thead><tr><th>Nome</th><th>Tipo</th><th></th></tr></thead>
+                <tbody>
+                  <tr><td>Aluguel</td><td><span class="badge badge-expense">Despesa</span></td><td><span style="font-size:12px; color:var(--text-secondary); cursor:pointer">Editar</span></td></tr>
+                  <tr><td>Internet</td><td><span class="badge badge-expense">Despesa</span></td><td><span style="font-size:12px; color:var(--text-secondary); cursor:pointer">Editar</span></td></tr>
+                  <tr><td>Energia</td><td><span class="badge badge-expense">Despesa</span></td><td><span style="font-size:12px; color:var(--text-secondary); cursor:pointer">Editar</span></td></tr>
+                  <tr><td>Transporte</td><td><span class="badge badge-expense">Despesa</span></td><td><span style="font-size:12px; color:var(--text-secondary); cursor:pointer">Editar</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     APP — EMPRESA
+═══════════════════════════════════════════════════════════════ -->
+<div id="empresa" class="screen">
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">PJFin</div>
+      <div class="sidebar-section">Principal</div>
+      <div class="sidebar-item" onclick="show('dashboard')"><div class="sidebar-icon"></div> Dashboard</div>
+      <div class="sidebar-section">Financeiro</div>
+      <div class="sidebar-item" onclick="show('transacoes')"><div class="sidebar-icon"></div> Transações</div>
+      <div class="sidebar-item" onclick="show('contas')"><div class="sidebar-icon"></div> Contas</div>
+      <div class="sidebar-item" onclick="show('cashflow')"><div class="sidebar-icon"></div> Fluxo de Caixa</div>
+      <div class="sidebar-section">Configurações</div>
+      <div class="sidebar-item" onclick="show('categorias')"><div class="sidebar-icon"></div> Categorias</div>
+      <div class="sidebar-item active"><div class="sidebar-icon"></div> Empresa</div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar"></div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">João Silva</div>
+            <div class="sidebar-user-company">Empresa XYZ</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Dados da Empresa</div>
+      </div>
+      <div class="page-body">
+        <div class="form-card">
+          <div class="profile-section-title">Informações da Empresa</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <div class="form-label">Nome da Empresa</div>
+              <div class="form-input" style="background:var(--block); border-radius:4px; height:44px; display:flex; align-items:center; padding:0 14px; font-size:13px; color:var(--text-primary)">Empresa XYZ</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">CNPJ</div>
+              <div class="form-input" style="background:var(--block); border-radius:4px; height:44px; display:flex; align-items:center; padding:0 14px; font-size:13px; color:var(--text-primary)">00.000.000/0001-00</div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-save">Salvar alterações</button>
+            <button class="btn-cancel">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     APP — PERFIL
+═══════════════════════════════════════════════════════════════ -->
+<div id="perfil" class="screen">
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">PJFin</div>
+      <div class="sidebar-section">Principal</div>
+      <div class="sidebar-item" onclick="show('dashboard')"><div class="sidebar-icon"></div> Dashboard</div>
+      <div class="sidebar-section">Financeiro</div>
+      <div class="sidebar-item" onclick="show('transacoes')"><div class="sidebar-icon"></div> Transações</div>
+      <div class="sidebar-item" onclick="show('contas')"><div class="sidebar-icon"></div> Contas</div>
+      <div class="sidebar-item" onclick="show('cashflow')"><div class="sidebar-icon"></div> Fluxo de Caixa</div>
+      <div class="sidebar-section">Configurações</div>
+      <div class="sidebar-item" onclick="show('categorias')"><div class="sidebar-icon"></div> Categorias</div>
+      <div class="sidebar-item" onclick="show('empresa')"><div class="sidebar-icon"></div> Empresa</div>
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <div class="sidebar-avatar"></div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">João Silva</div>
+            <div class="sidebar-user-company">Empresa XYZ</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div class="main-content">
+      <div class="topbar">
+        <div class="topbar-title">Meu Perfil</div>
+      </div>
+      <div class="page-body">
+        <div class="profile-grid">
+          <div class="form-card">
+            <div class="profile-section-title">Dados Pessoais</div>
+            <div class="form-row">
+              <div class="form-group">
+                <div class="form-label">Nome</div>
+                <div class="form-input" style="background:var(--block); border-radius:4px; height:44px; display:flex; align-items:center; padding:0 14px; font-size:13px; color:var(--text-primary)">João</div>
+              </div>
+              <div class="form-group">
+                <div class="form-label">Sobrenome</div>
+                <div class="form-input" style="background:var(--block); border-radius:4px; height:44px; display:flex; align-items:center; padding:0 14px; font-size:13px; color:var(--text-primary)">Silva</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">E-mail</div>
+              <div class="form-input" style="background:var(--block); border-radius:4px; height:44px; display:flex; align-items:center; padding:0 14px; font-size:13px; color:var(--text-primary)">joao@email.com</div>
+            </div>
+            <div class="form-actions">
+              <button class="btn-save">Salvar alterações</button>
+              <button class="btn-cancel">Cancelar</button>
+            </div>
+          </div>
+          <div class="form-card">
+            <div class="profile-section-title">Alterar Senha</div>
+            <div class="form-group">
+              <div class="form-label">Senha Atual</div>
+              <div class="form-input" style="background:var(--block); border-radius:4px; height:44px"></div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Nova Senha</div>
+              <div class="form-input" style="background:var(--block); border-radius:4px; height:44px"></div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Confirmar Nova Senha</div>
+              <div class="form-input" style="background:var(--block); border-radius:4px; height:44px"></div>
+            </div>
+            <div class="form-actions">
+              <button class="btn-save">Alterar senha</button>
+              <button class="btn-cancel">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wf-label">PJFin — Wireframes v1.0</div>
+
+<script>
+  function show(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(b => {
+      if (b.getAttribute('onclick') === `show('${id}')`) b.classList.add('active');
+    });
+  }
+</script>
+</body>
+</html>
