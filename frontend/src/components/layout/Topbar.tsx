@@ -3,6 +3,9 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import { useNavigate, useLocation } from 'react-router-dom'
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
+import useThemeStore from '../../store/themeStore'
 
 const pageTitles: Record<string, string> = {
   '/dashboard': 'Dashboard',
@@ -17,6 +20,7 @@ const pageTitles: Record<string, string> = {
 function Topbar() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { mode, toggleTheme } = useThemeStore()
 
   const pageTitle = pageTitles[location.pathname] ?? 'PJFin'
 
@@ -49,6 +53,15 @@ function Topbar() {
 
       {/* Ações */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Tooltip title={mode === 'light' ? 'Modo escuro' : 'Modo claro'}>
+          <IconButton sx={{ color: '#9E9E9E' }} onClick={toggleTheme}>
+            {mode === 'light' ? (
+              <DarkModeOutlinedIcon fontSize="small" />
+              ) : (
+              <LightModeOutlinedIcon fontSize="small" />
+            )}
+          </IconButton>
+        </Tooltip>
         <Tooltip title="Notificações">
           <IconButton sx={{ color: '#9E9E9E' }}>
             <NotificationsOutlinedIcon fontSize="small" />

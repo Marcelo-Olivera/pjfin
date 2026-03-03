@@ -76,7 +76,7 @@
 - [ ] Indicadores financeiros (KPIs)
 - [ ] UX refinado
 - [ ] Responsividade mobile
-- [ ] Deploy: Vercel + Railway + Neon
+- [ ] Deploy: Vercel + Render + Render
 - [ ] Documentação técnica
 - [ ] README profissional
 
